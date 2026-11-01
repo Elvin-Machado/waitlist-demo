@@ -1,0 +1,81 @@
+# Dependencies and local package caches (keep bun.lock committed)
+node_modules/
+.npm/
+.bun/
+
+# Next.js and generated build output, in every app
+.next/
+out/
+dist/
+dist-ssr/
+build/
+next-env.d.ts
+*.tsbuildinfo
+
+# Environment files and local Firebase configuration
+.env*
+!.env.example
+!.env.*.example
+.secret.*
+!.secret.local.example
+.runtimeconfig.json
+
+# Private keys and Firebase/Google service-account credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*firebase-adminsdk*.json
+*service-account*.json
+*service_account*.json
+serviceAccount*.json
+
+# Local deployment state and Firebase emulator exports
+.firebase/
+.vercel/
+firebase-export-*/
+
+# Test output and saved browser sessions
+coverage/
+.nyc_output/
+*.lcov
+test-results/
+playwright-report/
+blob-report/
+**/playwright/.cache/
+**/playwright/.auth/
+
+# Tool caches and temporary migration artifacts
+.cache/
+.turbo/
+.eslintcache
+.stylelintcache
+.tmp/
+.temp/
+.migration/
+
+# Logs, process state, and diagnostic dumps
+logs/
+*.log
+*.log.*
+*.pid
+*.pid.lock
+report.[0-9]*.json
+*.cpuprofile
+*.heapprofile
+*.heapsnapshot
+
+# Local editor files; extension recommendations can be shared
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# Windows and macOS metadata
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini

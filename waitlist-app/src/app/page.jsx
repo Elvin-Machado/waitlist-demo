@@ -1,0 +1,5 @@
+import Screen from "@/components/Home";
+
+export default function Page() {
+  return <Screen />;
+}

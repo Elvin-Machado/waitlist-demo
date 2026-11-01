@@ -1,0 +1,26 @@
+{
+  "name": "waitlist-app",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --bun next dev --port 3002",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start --port 3002",
+    "lint": "oxlint src"
+  },
+  "dependencies": {
+    "firebase": "^12.17.1",
+    "framer-motion": "^14.9.0",
+    "next": "16.4.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.85.0",
+    "react-icons": "^5.7.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "oxlint": "^1.75.0"
+  }
+}
