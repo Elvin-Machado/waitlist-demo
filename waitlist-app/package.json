@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "bun --bun next dev --port 3002",
+    "dev": "bun next dev --port 3005",
     "build": "bun --bun next build",
-    "start": "bun --bun next start --port 3002",
+    "start": "bun next start --port 3005",
     "lint": "oxlint src"
   },
   "dependencies": {

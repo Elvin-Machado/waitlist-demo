@@ -21,15 +21,7 @@ const CHIPS = [
   { label: "Education", icon: <FaGraduationCap />, className: "k-chip--6", delay: 1.14 },
 ];
 
-const MARQUEE = [
-  "Customer Due Diligence",
-  "Anti-Money Laundering",
-  "Sanctions Screening",
-  "Transaction Monitoring",
-  "Regulatory Frameworks",
-  "Financial Crime",
-  "Professional Education",
-];
+
 
 export default function LandingPage() {
   const reduce = useReducedMotion();
@@ -49,16 +41,14 @@ export default function LandingPage() {
 
   return (
     <section className="k-hero" id="home">
+      
       <div className="k-hero-grid" aria-hidden="true" />
       <div className="k-hero-glow k-hero-glow--blue" aria-hidden="true" />
       <div className="k-hero-glow k-hero-glow--amber" aria-hidden="true" />
 
       <div className="k-hero-inner">
         <div className="k-hero-copy">
-          <motion.span className="k-hero-eyebrow" {...fade(0.05)}>
-            <span className="dot" />
-            Financial Crime · Compliance · Education
-          </motion.span>
+          
 
           <motion.h1 className="k-hero-title" {...fade(0.14)}>
             <span>KAWS</span>
@@ -165,19 +155,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <div className="k-marquee" aria-hidden="true">
-        <div className="k-marquee-track">
-          {[0, 1].map((copy) => (
-            <div key={copy} style={{ display: "flex" }}>
-              {MARQUEE.map((item) => (
-                <span key={`${copy}-${item}`} className="k-marquee-item">
-                  {item}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+     
     </section>
   );
 }

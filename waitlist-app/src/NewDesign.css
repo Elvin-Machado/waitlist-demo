@@ -27,6 +27,8 @@
   --k-radius: 22px;
   --k-max: 1200px;
   --k-nav-h: 76px;
+  --k-marquee-h: 44px;
+  --k-header-h: calc(var(--k-nav-h) + var(--k-marquee-h));
 }
 
 html {
@@ -42,7 +44,7 @@ html {
 #team,
 #join,
 #home {
-  scroll-margin-top: 92px;
+  scroll-margin-top: calc(var(--k-header-h) + 16px);
 }
 
 body {
@@ -232,10 +234,18 @@ body {
    NAVIGATION
    ========================================================================== */
 
-.k-nav {
+.k-nav-header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.k-nav {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: var(--k-nav-h);
   display: flex;
@@ -262,6 +272,10 @@ body {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   box-shadow: none;
+}
+
+.k-nav-header:has(.k-nav.is-hero) {
+  z-index: 1000;
 }
 
 .k-nav-inner {
@@ -529,8 +543,8 @@ body {
   color: #fff;
   overflow: hidden;
   isolation: isolate;
-  margin-top: calc(var(--k-nav-h) * -1);
-  padding-top: var(--k-nav-h);
+  margin-top: calc(var(--k-header-h) * -1);
+  padding-top: var(--k-header-h);
 }
 
 .k-hero-grid {
@@ -579,7 +593,7 @@ body {
   grid-template-columns: 1.08fr 0.92fr;
   align-items: center;
   gap: clamp(30px, 5vw, 70px);
-  min-height: calc(100vh - var(--k-nav-h));
+  min-height: calc(100vh - var(--k-header-h));
 }
 
 .k-hero-copy {
@@ -780,10 +794,26 @@ body {
 /* marquee */
 .k-marquee {
   position: relative;
-  z-index: 2;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 0;
+  width: 100%;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
+  height: var(--k-marquee-h);
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(11, 18, 32, 0.08);
+  border-bottom: 1px solid rgba(11, 18, 32, 0.08);
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+.k-marquee.is-hero {
+  background: rgba(11, 18, 32, 0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top-color: rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .k-marquee-track {
@@ -796,12 +826,18 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  padding: 15px 26px;
+  padding: 0 26px;
   font-family: var(--k-mono);
   font-size: 10.5px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
+  color: var(--k-muted);
+  white-space: nowrap;
+  transition: color 0.35s ease;
+}
+
+.k-marquee.is-hero .k-marquee-item {
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .k-marquee-item::after {
@@ -1402,7 +1438,7 @@ body {
 }
 
 /* modal */
-.k-modal-open .k-nav {
+.k-modal-open .k-nav-header {
   visibility: hidden;
 }
 
@@ -2136,7 +2172,7 @@ body {
   position: relative;
   background: var(--k-ink);
   color: #fff;
-  min-height: calc(100vh - var(--k-nav-h));
+  min-height: calc(100vh - var(--k-header-h));
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -2572,6 +2608,12 @@ body {
 
   .k-nav {
     height: 64px;
+    --k-nav-h: 64px;
+  }
+
+  .k-marquee {
+    --k-marquee-h: 36px;
+    height: var(--k-marquee-h);
   }
 
   .k-brand-logo {
@@ -2662,7 +2704,7 @@ body {
   }
 
   .k-marquee-item {
-    padding: 12px 18px;
+    padding: 0 16px;
     font-size: 9px;
   }
 

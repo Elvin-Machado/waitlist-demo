@@ -1,1 +1,2 @@
+functions/demo.zip filter=lfs diff=lfs merge=lfs -text
 functions.demo.zip filter=lfs diff=lfs merge=lfs -text

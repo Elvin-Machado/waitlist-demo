@@ -24,6 +24,16 @@ const SECTION_LINKS = [
   { id: "team", label: "Our Team" },
 ];
 
+const MARQUEE = [
+  "Customer Due Diligence",
+  "Anti-Money Laundering",
+  "Sanctions Screening",
+  "Transaction Monitoring",
+  "Regulatory Frameworks",
+  "Financial Crime",
+  "Professional Education",
+];
+
 // Profile avatar with graceful fallback if photoURL is missing or fails to load
 function UserAvatar({ src }) {
   const [imgError, setImgError] = useState(false);
@@ -210,6 +220,7 @@ export default function NavBar() {
     .join(" ");
 
   return (
+    <header className="k-nav-header">
     <nav className={navClass} aria-label="Primary">
       <div className="k-nav-inner">
         <Link href="/" className="k-brand" onClick={() => setIsOpen(false)}>
@@ -407,5 +418,20 @@ export default function NavBar() {
         </>
       )}
     </nav>
+
+      <div className={`k-marquee ${isHero ? "is-hero" : ""}`} aria-hidden="true">
+        <div className="k-marquee-track">
+          {[0, 1].map((copy) => (
+            <div key={copy} style={{ display: "flex" }}>
+              {MARQUEE.map((item) => (
+                <span key={`${copy}-${item}`} className="k-marquee-item">
+                  {item}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </header>
   );
 }
