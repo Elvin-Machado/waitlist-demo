@@ -5,10 +5,10 @@ import { usePathname, useRouter } from "next/navigation";
 
 const EXPLORE = [
   { id: "about", label: "About" },
-  { id: "provide", label: "What We Provide" },
-  { id: "domains", label: "Domains" },
-  { id: "approach", label: "Learning Approach" },
-  { id: "team", label: "Our Team" },
+  { id: "domains", label: "Learning domains" },
+  { id: "approach", label: "How you’ll learn" },
+  { id: "team", label: "Our team" },
+  { id: "faq", label: "FAQs" },
 ];
 
 export default function Footer() {
@@ -103,8 +103,8 @@ export default function Footer() {
             © {new Date().getFullYear()} KAWS® Academy. All rights reserved.
           </p>
           <div className="k-footer-legal">
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
+            <Link href="/courses">Course catalog</Link>
+            <a href="mailto:kawsacademy@gmail.com">Contact us</a>
           </div>
         </div>
       </div>

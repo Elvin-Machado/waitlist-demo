@@ -18,20 +18,10 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 const SECTION_LINKS = [
-  { id: "about", label: "About" },
-  { id: "provide", label: "What We Provide" },
-  { id: "domains", label: "Domains" },
-  { id: "team", label: "Our Team" },
-];
-
-const MARQUEE = [
-  "Customer Due Diligence",
-  "Anti-Money Laundering",
-  "Sanctions Screening",
-  "Transaction Monitoring",
-  "Regulatory Frameworks",
-  "Financial Crime",
-  "Professional Education",
+  { id: "domains", label: "Courses" },
+  { id: "approach", label: "How you’ll learn" },
+  { id: "team", label: "Our team" },
+  { id: "faq", label: "FAQs" },
 ];
 
 // Profile avatar with graceful fallback if photoURL is missing or fails to load
@@ -210,10 +200,8 @@ export default function NavBar() {
     router.push(`/#${id}`);
   };
 
-  const isHero = isHome && !scrolled;
   const navClass = [
     "k-nav",
-    isHero ? "is-hero" : "",
     scrolled ? "is-solid" : "",
   ]
     .filter(Boolean)
@@ -300,7 +288,7 @@ export default function NavBar() {
           )}
 
           <Link href="/waitlist" className="k-btn k-btn--sm k-nav-cta">
-            Join Now
+            Join the waitlist
             <FaArrowRight size={11} />
           </Link>
         </div>
@@ -419,19 +407,6 @@ export default function NavBar() {
       )}
     </nav>
 
-      <div className={`k-marquee ${isHero ? "is-hero" : ""}`} aria-hidden="true">
-        <div className="k-marquee-track">
-          {[0, 1].map((copy) => (
-            <div key={copy} style={{ display: "flex" }}>
-              {MARQUEE.map((item) => (
-                <span key={`${copy}-${item}`} className="k-marquee-item">
-                  {item}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
     </header>
   );
 }

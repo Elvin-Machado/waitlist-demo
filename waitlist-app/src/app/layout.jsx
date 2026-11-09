@@ -1,5 +1,6 @@
 import "@/App.css";
 import "@/NewDesign.css";
+import "@/Academy.css";
 import ConditionalNav from "@/components/ConditionalNav";
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <a className="academy-skip" href="#main-content">Skip to content</a>
         <div id="root">
           <div className="app-wrapper">
             <ConditionalNav />

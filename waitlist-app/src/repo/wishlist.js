@@ -5,6 +5,7 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../utils/firebase";
+import { validateEmail } from "../utils/validate-email";
 
 /**
  * Adds a person to the Firestore waitlist collection.
@@ -16,15 +17,14 @@ import { db } from "../utils/firebase";
  */
 export async function addToWaitlist(name, email, phone, interest) {
 
-  if (!email) {
-    throw new Error("Email is required");
-  }
+  const fullName = String(name || "").trim();
+  const emailId = String(email || "").trim().toLowerCase();
+  if (fullName.length < 2) throw new Error("Please enter your full name.");
+  if (!validateEmail(emailId)) throw new Error("Please enter a valid email address.");
 
   if (!db) {
     throw new Error("The waitlist is temporarily unavailable. Please try again later.");
   }
-
-  const emailId = email.trim().toLowerCase();
 
   const waitlistRef = doc(
     db,
@@ -33,7 +33,7 @@ export async function addToWaitlist(name, email, phone, interest) {
   );
 
   const payload = {
-    name,
+    name: fullName,
     email: emailId,
     createdAt: serverTimestamp(),
   };
@@ -50,8 +50,8 @@ export async function addToWaitlist(name, email, phone, interest) {
     await setDoc(waitlistRef, payload);
   } catch (err) {
     if (err?.code === "permission-denied" || err?.message?.includes("permission")) {
-      throw new Error("This email is already on the waitlist.");
+      throw new Error("We couldn’t save your details. Please contact our team or try again later.");
     }
-    throw err;
+    throw new Error("The waitlist is temporarily unavailable. Please try again later.");
   }
 }

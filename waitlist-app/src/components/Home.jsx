@@ -3,13 +3,11 @@
 import { useEffect } from "react";
 import Footer from "./Footer";
 import LandingPage from "./Landing";
-import About from "./About";
-import MissionVision from "./MissionVision";
-import WhatWeProvide from "./WhatWeProvide";
 import Domains from "./Domains";
 import LearningApproach from "./LearningApproach";
 import Team from "./Team";
 import FinalCTA from "./FinalCTA";
+import FAQ from "./FAQ";
 
 export default function Home() {
   // Honour hash links when arriving from another route (e.g. /#domains).
@@ -41,16 +39,16 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="k-main">
+    <>
+    <main className="k-main academy-home" id="main-content">
       <LandingPage />
-      <About />
-      <MissionVision />
-      <WhatWeProvide />
       <Domains />
       <LearningApproach />
       <Team />
+      <FAQ />
       <FinalCTA />
-      <Footer />
     </main>
+    <Footer />
+    </>
   );
 }

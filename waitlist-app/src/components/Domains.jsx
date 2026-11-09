@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   FaArrowRight,
@@ -72,6 +73,7 @@ function CourseRow({ course }) {
 
 export default function Domains() {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [showAll, setShowAll] = useState(false);
   const [mounted, setMounted] = useState(false);
   const reduce = useReducedMotion();
   const closeRef = useRef(null);
@@ -167,17 +169,17 @@ export default function Domains() {
         <div className="k-domains-head">
           <div>
             <Reveal>
-              <span className="k-eyebrow">Courses Offered</span>
+              <span className="k-eyebrow">Explore the curriculum</span>
             </Reveal>
             <Reveal delay={0.06}>
               <h2 className="k-display">
-                Explore our <em>learning domains.</em>
+                Find your <em>starting point.</em>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="k-body" style={{ maxWidth: "52ch" }}>
-                Every domain is a structured track built from focused modules.
-                Select a domain to see the courses, levels and durations inside.
+                From essential foundations to specialist skills. Explore a domain
+                to discover its modules, levels and learning time.
               </p>
             </Reveal>
           </div>
@@ -188,7 +190,7 @@ export default function Domains() {
         </div>
 
         <div className="k-domain-grid">
-          {domains.map((domain, index) => (
+          {(showAll ? domains : domains.slice(0, 6)).map((domain, index) => (
             <Reveal key={domain.domain} delay={(index % 3) * 0.07} amount={0.15}>
               <button
                 type="button"
@@ -197,8 +199,8 @@ export default function Domains() {
                 aria-haspopup="dialog"
               >
                 <span className="k-domain-top">
-                  <span className="k-domain-num">{domain.number}</span>
                   <span className="k-domain-icon">{domain.icon}</span>
+                  <span className="academy-domain-status">Coming soon</span>
                 </span>
                 <span className="k-domain-name">{domain.domain}</span>
                 <span className="k-domain-desc">{domain.short}</span>
@@ -213,6 +215,13 @@ export default function Domains() {
               </button>
             </Reveal>
           ))}
+        </div>
+        <div className="academy-domain-actions">
+          <button type="button" className="academy-secondary-btn" aria-expanded={showAll} onClick={() => setShowAll(!showAll)}>
+            {showAll ? "Show fewer domains" : `Explore all ${domains.length} domains`}
+            <FaArrowRight size={12} aria-hidden="true" />
+          </button>
+          <Link href="/courses" className="academy-text-link">Browse every module <FaArrowRight size={12} aria-hidden="true" /></Link>
         </div>
       </div>
 
@@ -266,7 +275,7 @@ export default function Domains() {
 
                   <div className="k-modal-body">
                     <div className="k-modal-body-head">
-                      <h4>Available courses</h4>
+                      <h4>Planned curriculum</h4>
                       <span>{active.courses.length} modules</span>
                     </div>
 
@@ -275,6 +284,10 @@ export default function Domains() {
                         <CourseRow key={course.code} course={course} />
                       ))}
                     </ul>
+                    <div className="academy-modal-cta">
+                      <p>Interested in this domain? Get notified when programs launch.</p>
+                      <Link href={`/waitlist?interest=${encodeURIComponent(active.domain)}`} className="k-btn" onClick={close}>Join the waitlist <FaArrowRight size={12} aria-hidden="true" /></Link>
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>
